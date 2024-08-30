@@ -62,6 +62,8 @@ application = get_wsgi_application()
 
 ## ASGI.py ##
 
+🐑💬 ➰ Asynchronous Server Gateway Interface, similar to WSGI with Python asynchronous process. This approach also implements both Python and .net or web applications but they create different effects on the application running behavior because they work asynchronous processes. Working with data applications may not identify problems but registration and priority order programs will need a confirmation process that creates the different behaviors but the working results are from applications in application logic. Working asynchronously capable by broadcasting message for receiver status when it is ready, in some telecommunication will require one more message tell about the application ready. </br>
+
 ```
 """
 ASGI config for myproject project.
