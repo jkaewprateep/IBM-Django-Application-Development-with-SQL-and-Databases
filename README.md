@@ -825,6 +825,8 @@ def registration_request(request):
 
 ### urls.py ###
 
+🧸💬 Create routes of ```EnrollView view```, ```CourseListView view```, ```CourseDetailsView view```, ```logout path```, ```login path```, and ```registration path```. </br>
+
 ```
 from django.urls import path
 from django.conf import settings
