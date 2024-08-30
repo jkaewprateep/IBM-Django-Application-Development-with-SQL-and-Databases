@@ -378,6 +378,9 @@ from django.test import TestCase
 
 ## views.py ##
 
+🐑💬 ➰ The class ```CourseDetailsView``` inherits of class ```generic.DetailView``` with create a new definition ```get``` to render return context into ```onlinecourse/course_detail.html``` . </br> 
+🐑💬 ➰ The class ```EnrollView``` inherits of class ```View``` import from ```django.views``` with create a new definition ```post``` to return by redirect to ```course_details``` with argrument ```course.id``` . </br> 
+
 ```
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
