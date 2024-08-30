@@ -466,7 +466,7 @@ class CourseListView(generic.ListView):
 
 ### course.css ###
 
-🐑💬 ➰ HTML style sheet .css </br>
+🐑💬 ➰ HTML style sheet .css with filter and action ```.row:after```, ```input[type=text]:focus, input[type=password]:focus```, and ```.dropdown:hover``` </br>
 
 ```
 body {font-family: Arial, Helvetica, sans-serif;}
