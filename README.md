@@ -452,6 +452,257 @@ class CourseListView(generic.ListView):
 
 ## # Lab - 1 ##
 
+### course.css ###
+
+```
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+
+
+/* Add a gray background color with some padding */
+body {
+  font-family: Arial;
+  padding: 10px;
+  background: #ececec;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+
+.button {
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #005493;
+}
+
+.container {
+  padding: 64px;
+}
+
+.small-container {
+  padding: 16px;
+}
+
+.rightalign {
+    float: right;
+}
+
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+
+/* 2/3 column */
+.column-66 {
+  float: left;
+  width: 66.66666%;
+  padding: 20px;
+}
+
+/* 1/3 column */
+.column-33 {
+  float: left;
+  width: 33.33333%;
+  padding: 20px;
+}
+
+/* Add responsiveness - make the columns appear on top of each other instead of next to each other on small screens */
+@media screen and (max-width: 1000px) {
+  .column-66,
+  .column-33 {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #dadfe1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.red{
+    color:red
+}
+
+.dropbtn {
+  background-color: #005493;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: darkblue;}
+```
+
+### course_detail.html ###
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'onlinecourse/course.css' %}">
+</head>
+<body>
+    <div class="card">
+        <h2>{{ course.name }}</h2>
+        <h5>{{ course.description }}</h5>
+    </div>
+    <h2>Lessons: </h2>
+    {% for lesson in course.lesson_set.all %}
+    <div class="card">
+        <h5>Lesson {{lesson.order}} : {{lesson.title}}</h5>
+        <p>{{lesson.content}}</p>
+    </div>
+    {% endfor %}
+</body>
+</html>
+```
+
+### course_list.html ###
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'onlinecourse/course.css' %}">
+    <meta charset="UTF-8">
+    <title>Online Courses</title>
+</head>
+<body>
+<h2>Popular courses list</h2>
+<hr>
+{% if course_list %}
+    <ul>
+    {% for course in course_list %}
+        <div class="container">
+          <div class="row">
+              <div class="column-33">
+                <img src="{{MEDIA_URL}}/{{ course.image }}" width="360" height="360" >
+            </div>
+            <div class="column-66">
+                <h1 class="xlarge-font"><b>{{ course.name }}</b></h1>
+                <p style="color:MediumSeaGreen;"><b>{{course.total_enrollment}} enrolled</b></p>
+                <p> {{ course.description }}</p>
+                <form action="{% url 'onlinecourse:enroll' course.id %}" method="post">
+                    {% csrf_token %}
+                <input class="button"  type="submit"  value="Enroll">
+              </form>
+            </div>
+          </div>
+        </div>
+        <hr>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No courses are available.</p>
+{% endif %}
+</body>
+</html>
+```
+
 ## # Lab - 2 ##
 
 ## # Lab - 3 ##
