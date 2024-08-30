@@ -15,6 +15,21 @@ IBM - Django Application Development with SQL and Databases
 [HackerRank SQL (Advance)]( https://www.hackerrank.com/certificates/f225fa371510 ) </br>
 [Board .NET FullStack Developer Specialization]( https://github.com/jkaewprateep/Portfolio/blob/main/Coursera%206DRYK7YS79ZT.pdf ) </br>
 
+## Requirements ##
+
+```
+Django==3.1.3
+Pillow==10.0.0
+jinja2==3.0
+gunicorn==20.1.0
+contextvars
+typing-extensions==4.1.1
+aiohttp==3.8.3
+click==8.0.4
+wheel==0.41.1
+multidict==4.5
+```
+
 ## # Lab - 1 ##
 
 ## # Lab - 2 ##
