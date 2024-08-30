@@ -736,6 +736,10 @@ input[type=text]:focus, input[type=password]:focus {
 
 ### views.py ###
 
+🐑💬 ➰ Define methods ```logout_request```, ```login_request```, and ```registration_request``` for user log-in, log-out, and registration process with implementing of ```authenticate``` function from django.contrib.auth Django component. </br>
+🐑💬 ➰ The code implement of ```redirect function```, ```render function``` for redirecting with to target path URL and rendering HTML content with input variable context to the target website. </br>
+🐑💬 ➰ Working with the ```User.objects.create_user``` for user management level codes implementation. </br>
+
 ```
 from django.contrib.auth.models import User
 from collections import defaultdict
