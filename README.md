@@ -19,6 +19,7 @@ IBM - Django Application Development with SQL and Databases
 
 🧸💬 ```Django``` : Django library, ```Pillow``` : Python image library, ```jinja2``` : Document template library, ```gunicorn```: WSGI HTTP Server, ```contextvars``` : Task asynchronous context variables, ```typing-extensions``` : Python runtime typing extension,
 ```aiohttp``` : Python HTTP request API, ```click``` : Python CLI interfaces, ```wheel``` : PEP Python Enhancement Proposals, and ```multidict``` : Python dictionary key-pairs library. </br>
+🐑💬 ➰ WSGI **standard interface between web applications written in Python and Webservers** is required for Python application programs working with web-server application development by working as a background process and communication for Pythong working language with the pre-complied and complied library. You can compare it with ASP.net web application development that you may be running by C#.net and VB.net codes files or you can comply with local library loading with a web application running or target library registration as in .net registration process. As recommendations when there is a problem with the web application server and there is an error message about the WSGI application re-do verify that your reuqirements are all registrerred and configuration working directory path and configuration version are correct. </br>
 
 ```
 Django==3.1.3
