@@ -652,6 +652,10 @@ input[type=text]:focus, input[type=password]:focus {
 
 ### course_detail.html ###
 
+🐑💬 ➰ Iterative of results set to return over the integration scopes of the target application, running of integration method support of for loop and simple aggregate functions. </br>
+🥺💬 I submitted my javascript, react.js assignment with ```!``` existence condition for integration fields but I had some feedback about using javascript rather than fixed value variables. </br>
+🦭💬 There is always have if then may assign conditions as promised but it may transform as in ```C language``` or ```syntax`` to warn you about the coding style or expected coding behavior. </br>
+
 ```
 <!DOCTYPE html>
 <html lang="en">
