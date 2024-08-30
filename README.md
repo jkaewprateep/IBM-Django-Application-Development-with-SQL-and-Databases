@@ -731,6 +731,8 @@ input[type=text]:focus, input[type=password]:focus {
 
 ## # Lab - 2 ##
 
+🧸💬 This laboratory talks about user authentication, the registration process, user login-logout authentication, and user information details to display on the dynamic content table . </br>
+
 ### views.py ###
 
 ```
