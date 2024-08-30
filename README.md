@@ -266,6 +266,10 @@ class OnlinecourseConfig(AppConfig):
 
 ## models.py ##
 
+🐑💬 ➰ Data model with data table fields, relationship, column definition, default values, foreign key, primary key, null enabled value, user define values, and authentication if applicable. </br>
+🐯💬 By data table and database definition encoding and Culture-INFO, the model and application can apply logical functions for data validation or data transformation for datetime, running number, verification key, and encoding value but they have significant usages. By applying the configuration settings and text format ```culture INFO``` at the database and database table the database or data management services will validate data and return the data insertion, modification, update, or delete results with the same communication method invoke the method but it is working at the database level and application need to handle or the insertion errors and modification by themself. When data model validation you can handle with codes and have instance response with specific information and utilize the same connection and working process for handling the insertion errors also the application when it is running asynchronously can multiply access or utilize the ```database connection management services``` or use of building database connection management services such as ```MongoDB``` or ```Message queue management```. </br>
+🦭💬 Define the data model as a class similar to the dataset class so that we can create a build-in function for internal logic and exchange values with ```security method protection```. Working with the standard level the data model or classes will not exposed but the data requirements are with a ```description``` where ```calculation fields``` or ```integration values``` are internal programming logics. </br>
+
 ```
 import sys
 from django.utils.timezone import now
