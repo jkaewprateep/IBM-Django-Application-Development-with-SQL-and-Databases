@@ -922,6 +922,9 @@ urlpatterns = [
 
 ### user_login.html ###
 
+🧸💬 User login action element allowed in HTML with responsive action login in the ```onlinecourse``` application. </br>
+🧸💬 Enabled ```placeholder```, ```container``` and ```form action``` for communication and actions. </br>
+
 ```
 <!DOCTYPE html>
 <html lang="en">
