@@ -253,6 +253,9 @@ urlpatterns = [
 
 ## apps.py ##
 
+🦁💬 Application configuration data for application and subclasses import, asynchronize application running need to compose of identification method or the number of application instance object, an application running and update working task progress where user status and message communication carry information data synchronize process and support of calling by asynchronize process as events. Deploy applications in ```app.py``` or ```WSGI application``` or ```native application``` need consideration for programming code transforming because application behavior, priority order, status update, and communication methods are different. </br>     
+🧸💬 Application code migration is aware of this problem by working at the library level, queue message, identification identity for application working threads, and overall process monitoring and statistical reports because it is easier in code migration. For web applications asynchronized applications can have multiple message and events handling methods especially with telecommunication programs but with the Django application platform message communication is built with events status support, application, and user attributes and works with web appliation by utilizing the same message communication object that is fast and easy. </br>
+
 ```
 from django.apps import AppConfig
 
