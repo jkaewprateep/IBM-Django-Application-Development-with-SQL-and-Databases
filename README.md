@@ -464,11 +464,14 @@ class CourseListView(generic.ListView):
 
 ## # Lab - 1 ##
 
+🧸💬 This laboratory talks about creating dynamic content website content from responsive functions with enchanted displays with stylesheet ```.css```, application function, and integration area for user interactions. </br>
+🐐💬 By working with client-side script and server communiation services reduce the number of requests to response with dataset results returned instead of all information being processed on the server side and repeating the same process for all client's requests. </br>
+
 ### course.css ###
 
 🐑💬 ➰ HTML style sheet .css with filter and action ```.row:after```, ```input[type=text]:focus, input[type=password]:focus```, and ```.dropdown:hover``` </br>
 🥺💬 Nice question when you need to create interactive user control without building them as a user control interface with script manager, javascript with embedded pictures, local library, COM API, etc. </br>
-🐯💬 ```Culture-INFO``` data management services should handle data when user interaction services have multiple of user interaction controls, data services team knows about the user interaction but by design, the data should perform at the data communication level before transmitted, and the user interface display of the data with less of effort for ```data manipulation``` and should not access by the background working process that creates ```background infomration loop problem``` . </br>
+🐯💬 ```Culture-INFO``` data management services should handle data when user interaction services have multiple user interaction controls, data services team knows about the user interaction but by design, the data should perform at the data communication level before transmitted, and the user interface display of the data with less of effort for ```data manipulation``` and should not access by the background working process that creates ```background infomration loop problem``` . </br>
 
 ```
 body {font-family: Arial, Helvetica, sans-serif;}
