@@ -728,6 +728,386 @@ input[type=text]:focus, input[type=password]:focus {
 
 ## # Lab - 2 ##
 
+### models.py ###
+
+```
+import sys
+from django.utils.timezone import now
+try:
+    from django.db import models
+except Exception:
+    print("There was an error loading django modules. Do you have django installed?")
+    sys.exit()
+
+from django.conf import settings
+import uuid
+
+
+# Instructor model
+class Instructor(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    full_time = models.BooleanField(default=True)
+    total_learners = models.IntegerField()
+
+    def __str__(self):
+        return self.user.username
+
+
+# Learner model
+class Learner(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    STUDENT = 'student'
+    DEVELOPER = 'developer'
+    DATA_SCIENTIST = 'data_scientist'
+    DATABASE_ADMIN = 'dba'
+    OCCUPATION_CHOICES = [
+        (STUDENT, 'Student'),
+        (DEVELOPER, 'Developer'),
+        (DATA_SCIENTIST, 'Data Scientist'),
+        (DATABASE_ADMIN, 'Database Admin')
+    ]
+    occupation = models.CharField(
+        null=False,
+        max_length=20,
+        choices=OCCUPATION_CHOICES,
+        default=STUDENT
+    )
+    social_link = models.URLField(max_length=200)
+
+    def __str__(self):
+        return self.user.username + "," + \
+               self.occupation
+
+
+# Course model
+class Course(models.Model):
+    name = models.CharField(null=False, max_length=30, default='online course')
+    image = models.ImageField(upload_to='course_images/')
+    description = models.CharField(max_length=1000)
+    pub_date = models.DateField(null=True)
+    instructors = models.ManyToManyField(Instructor)
+    users = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Enrollment')
+    total_enrollment = models.IntegerField(default=0)
+    is_enrolled = False
+
+    def __str__(self):
+        return "Name: " + self.name + "," + \
+               "Description: " + self.description
+
+
+# Lesson model
+class Lesson(models.Model):
+    title = models.CharField(max_length=200, default="title")
+    order = models.IntegerField(default=0)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    content = models.TextField()
+
+
+# Enrollment model
+class Enrollment(models.Model):
+    AUDIT = 'audit'
+    HONOR = 'honor'
+    BETA = 'BETA'
+    COURSE_MODES = [
+        (AUDIT, 'Audit'),
+        (HONOR, 'Honor'),
+        (BETA, 'BETA')
+    ]
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    date_enrolled = models.DateField(default=now)
+    mode = models.CharField(max_length=5, choices=COURSE_MODES, default=AUDIT)
+    rating = models.FloatField(default=5.0)
+```
+
+### views.py ###
+
+```
+from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from .models import Course, Lesson, Enrollment
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404, render, redirect
+from django.http import Http404
+from django.urls import reverse
+from django.views import generic, View
+from collections import defaultdict
+from django.contrib.auth import login, logout, authenticate
+import logging
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
+# Create authentication related views
+def logout_request(request):
+    # Get the user object based on session id in request
+    print("Log out the user `{}`".format(request.user.username))
+    # Logout user in the request
+    logout(request)
+    # Redirect user back to course list view
+    return redirect('onlinecourse:popular_course_list')
+
+
+# Add a class-based course list view
+class CourseListView(generic.ListView):
+    template_name = 'onlinecourse/course_list.html'
+    context_object_name = 'course_list'
+
+    def get_queryset(self):
+       courses = Course.objects.order_by('-total_enrollment')[:10]
+       return courses
+
+
+# Add a generic course details view
+class CourseDetailsView(generic.DetailView):
+    model = Course
+    template_name = 'onlinecourse/course_detail.html'
+
+
+class EnrollView(View):
+
+    # Handles get request
+    def post(self, request, *args, **kwargs):
+        course_id = kwargs.get('pk')
+        course = get_object_or_404(Course, pk=course_id)
+        # Create an enrollment
+        course.total_enrollment += 1
+        course.save()
+        return HttpResponseRedirect(reverse(viewname='onlinecourse:course_details', args=(course.id,)))
+
+def login_request(request):
+    context = {}
+    # Handles POST request
+    if request.method == "POST":
+        # Get username and password from request.POST dictionary
+        username = request.POST['username']
+        password = request.POST['psw']
+        # Try to check if provide credential can be authenticated
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            # If user is valid, call login method to login current user
+            login(request, user)
+            return redirect('onlinecourse:popular_course_list')
+        else:
+            # If not, return to login page again
+            return render(request, 'onlinecourse/user_login.html', context)
+    else:
+        return render(request, 'onlinecourse/user_login.html', context)
+
+def registration_request(request):
+    context = {}
+    # If it is a GET request, just render the registration page
+    if request.method == 'GET':
+        return render(request, 'onlinecourse/user_registration.html', context)
+    # If it is a POST request
+    elif request.method == 'POST':
+        # Get user information from request.POST
+        username = request.POST['username']
+        password = request.POST['psw']
+        first_name = request.POST['firstname']
+        last_name = request.POST['lastname']
+        user_exist = False
+        try:
+            # Check if user already exists
+            User.objects.get(username=username)
+            user_exist = True
+        except:
+            # If not, simply log this is a new user
+            logger.debug("{} is new user".format(username))
+        # If it is a new user
+        if not user_exist:
+            # Create user in auth_user table
+            user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
+                                            password=password)
+            # Login the user and redirect to course list page
+            login(request, user)
+            return redirect("onlinecourse:popular_course_list")
+        else:
+            return render(request, 'onlinecourse/user_registration.html', context)
+```
+
+### urls.py ###
+
+```
+from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+from . import views
+
+app_name = 'onlinecourse'
+urlpatterns = [
+
+    path(route='course/<int:pk>/enroll/', view=views.EnrollView.as_view(), name='enroll'),
+    path(route='', view=views.CourseListView.as_view(), name='popular_course_list'),
+    path(route='course/<int:pk>/', view=views.CourseDetailsView.as_view(), name='course_details'),
+    # Authentication related urls
+	path('logout/', views.logout_request, name='logout'),
+    path('login/', views.login_request, name='login'),
+    path('registration/', views.registration_request, name='registration'),
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\
+ + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+```
+
+### course_detail.html ###
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'onlinecourse/course.css' %}">
+</head>
+<body>
+    <div class="card">
+        <h2>{{ course.name }}</h2>
+        <h5>{{ course.description }}</h5>
+    </div>
+    <h2>Lessons: </h2>
+    {% for lesson in course.lesson_set.all %}
+    <div class="card">
+        <h5>Lesson {{lesson.order}} : {{lesson.title}}</h5>
+        <p>{{lesson.content}}</p>
+    </div>
+    {% endfor %}
+</body>
+</html>
+```
+
+### course_list.html ###
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'onlinecourse/course.css' %}">
+    <meta charset="UTF-8">
+    <title>Online Courses</title>
+</head>
+<body>
+<!--Authentication section-->
+{% if user.is_authenticated %}
+    <div class="rightalign">
+        <div class="dropdown">
+            <button class="dropbtn">{{user.first_name}}</button>
+            <div class="dropdown-content">
+                <a href="{% url 'onlinecourse:logout' %}">Logout</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="rightalign">
+        <div class="dropdown">
+            <form action="{% url 'onlinecourse:registration' %}" method="get">
+                <input class="dropbtn"  type="submit" value="Visitor">
+                <div class="dropdown-content">
+                    <a href="{% url 'onlinecourse:registration' %}">Signup</a>
+                    <a href="{% url 'onlinecourse:login' %}">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endif %}
+
+<h2>Popular courses list</h2>
+<hr>
+{% if course_list %}
+    <ul>
+    {% for course in course_list %}
+        <div class="container">
+          <div class="row">
+              <div class="column-33">
+                <img src="{{MEDIA_URL}}/{{ course.image }}" width="360" height="360" >
+            </div>
+            <div class="column-66">
+                <h1 class="xlarge-font"><b>{{ course.name }}</b></h1>
+                <p style="color:MediumSeaGreen;"><b>{{course.total_enrollment}} enrolled</b></p>
+                <p> {{ course.description }}</p>
+                <form action="{% url 'onlinecourse:enroll' course.id %}" method="post">
+                    {% csrf_token %}
+                <input class="button"  type="submit"  value="Enroll">
+              </form>
+            </div>
+          </div>
+        </div>
+        <hr>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No courses are available.</p>
+{% endif %}
+</body>
+</html>
+```
+
+### user_login.html ###
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'onlinecourse/course.css' %}">
+</head>
+<body>
+<!--- Add a login form here  --->
+<form action="{% url 'onlinecourse:login' %}"  method="post">
+    {% csrf_token %}
+    <div class="container">
+      <h1>Login</h1>
+      <label for="username"><b>User Name</b></label>
+      <input type="text" placeholder="Enter User Name: " name="username" required>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password: " name="psw" required>
+      <div>
+        <button class="button" type="submit">Login</button>
+      </div>
+    </div>
+  </form>
+</body>
+```
+
+### user_registration.html ###
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'onlinecourse/course.css' %}">
+</head>
+<body>
+<!--- Add a registration form here  --->
+<form action="{% url 'onlinecourse:registration' %}" method="post">
+    <div class="container">
+      <h1>Sign Up</h1>
+      <hr>
+      <label for="username"><b>User Name</b></label>
+      <input type="text" placeholder="Enter User Name: " name="username" required>
+      <label for="firstname"><b>First Name</b></label>
+      <input type="text" placeholder="Enter First Name: " name="firstname" required>
+      <label for="lastname"><b>Last Name</b></label>
+      <input type="text" placeholder="Enter Last Name: " name="lastname" required>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password: " name="psw" required>
+      <div>
+          {% csrf_token %}
+          <button class="button" type="submit">Sign Up</button>
+      </div>
+    </div>
+  </form>
+</body>
+```
+
 ## # Lab - 3 ##
 
 
