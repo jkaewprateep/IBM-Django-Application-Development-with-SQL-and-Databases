@@ -221,6 +221,7 @@ MEDIA_URL = '/media/'
 
 🐑💬 ➰ It is a global routes table to target addresses, paths, views, applications, and resources. </br>
 👧💬 🎈 Global routes working for internal and external addresses as you may experience with proxy-server ```NGIX``` . I like this proxy application because it allows communication with application filters, message responses, and communication path configuration from the same source of TCP/IP communication and HTTP communication address. The routes table and  proxy allowed to communication filter message or working with installed application similar to firewall or network packets analysis applications for software and hardware. </br>
+👧💬 🎈 Better global routes working with applications, views, and internal modules. </br>
 
 ```
 """myproject URL Configuration
