@@ -467,6 +467,7 @@ class CourseListView(generic.ListView):
 ### course.css ###
 
 🐑💬 ➰ HTML style sheet .css with filter and action ```.row:after```, ```input[type=text]:focus, input[type=password]:focus```, and ```.dropdown:hover``` </br>
+🥺💬 Nice question when you need to create interactive user control without building them as a user control interface with script manager, javascript with embedded pictures, local library, COM API, etc. </br>
 
 ```
 body {font-family: Arial, Helvetica, sans-serif;}
