@@ -85,6 +85,8 @@ application = get_asgi_application()
 
 ## settings.py ##
 
+🦭💬 Application settings, connection settings, registred application and modules, dynamic values and statics values, templates document, and application you want to load after the application initially started. </br>
+
 ```
 """
 Django settings for myproject project.
