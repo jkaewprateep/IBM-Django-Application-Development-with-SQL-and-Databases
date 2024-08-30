@@ -368,6 +368,8 @@ class Enrollment(models.Model):
 
 ## test.py ##
 
+🐑💬 ➰ To perform Python test functions, or included libraries such as RobotFrameworks, Selenium, and many automation test applications. </br> 
+
 ```
 from django.test import TestCase
 
