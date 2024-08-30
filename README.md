@@ -682,6 +682,9 @@ input[type=text]:focus, input[type=password]:focus {
 
 ### course_list.html ###
 
+🐑💬 ➰ More than data population you can perform module functions from the HTML element by the integration script area and correct syntax, this allows you to create interaction response elements on the web page without creating ```a script manager``` for each integration area or they are create ```integration area``` as the script manager do it for you. </br>
+🦭💬 Create ```a category``` or ```table of contents``` with images banner by the ```for loop iterations``` and ```dynamics content``` . </br>
+
 ```
 <!DOCTYPE html>
 <html lang="en">
