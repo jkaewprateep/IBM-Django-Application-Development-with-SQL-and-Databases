@@ -39,6 +39,7 @@ multidict==4.5
 
 🐑💬 ➰ Similar to application setting or ```program.cs```, where the application initializes and loads the ```required settings``` and ```modules```. In the past, if we needed to create multiple applications, such as ```clients and servers```, from a web application server, we could call from the application program.cs, which is similar to this method where WSGI called the ```registered module``` and ```initialized the value```. ```Class name modification``` here will affect the entire project. </br>
 🐐💬 Some applications need to prioritize load order or pass-through value for their process or telecommunications programs may need to identify, or unique numbers at the beginning of the program before software architecture is allowed to create or utilize external queue management applications and services. </br>
+🐯 One application receiver, and accepted messages from multiple receivers where they required a dedicated TCP/IP communication port as user requirements, working in a dedicated communication port required a registration process and identifier with identity INFO. </br> 
 
 ```
 """
