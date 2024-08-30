@@ -732,6 +732,7 @@ input[type=text]:focus, input[type=password]:focus {
 ## # Lab - 2 ##
 
 🧸💬 This laboratory talks about user authentication, the registration process, user login-logout authentication, and user information details to display on the dynamic content table . </br>
+🐑💬 ➰ Authentication by using [django.contrib.auth]( https://docs.djangoproject.com/en/5.1/ref/contrib/auth/ ) Django authentication component, utilize of Django user, super user, and admin page for user and objects management.  </br>
 
 ### views.py ###
 
