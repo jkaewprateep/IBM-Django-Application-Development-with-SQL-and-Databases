@@ -466,6 +466,8 @@ class CourseListView(generic.ListView):
 
 ### course.css ###
 
+🐑💬 ➰ HTML style sheet .css </br>
+
 ```
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box}
