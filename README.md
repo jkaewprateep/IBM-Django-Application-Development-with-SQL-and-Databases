@@ -251,6 +251,205 @@ urlpatterns = [
  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 ```
 
+## apps.py ##
+
+```
+from django.apps import AppConfig
+
+
+class OnlinecourseConfig(AppConfig):
+    name = 'onlinecourse'
+```
+
+## models.py ##
+
+```
+import sys
+from django.utils.timezone import now
+try:
+    from django.db import models
+except Exception:
+    print("There was an error loading django modules. Do you have django installed?")
+    sys.exit()
+
+from django.conf import settings
+import uuid
+
+
+# Instructor model
+class Instructor(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    full_time = models.BooleanField(default=True)
+    total_learners = models.IntegerField()
+
+    def __str__(self):
+        return self.user.username
+
+
+# Learner model
+class Learner(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    STUDENT = 'student'
+    DEVELOPER = 'developer'
+    DATA_SCIENTIST = 'data_scientist'
+    DATABASE_ADMIN = 'dba'
+    OCCUPATION_CHOICES = [
+        (STUDENT, 'Student'),
+        (DEVELOPER, 'Developer'),
+        (DATA_SCIENTIST, 'Data Scientist'),
+        (DATABASE_ADMIN, 'Database Admin')
+    ]
+    occupation = models.CharField(
+        null=False,
+        max_length=20,
+        choices=OCCUPATION_CHOICES,
+        default=STUDENT
+    )
+    social_link = models.URLField(max_length=200)
+
+    def __str__(self):
+        return self.user.username + "," + \
+               self.occupation
+
+
+# Course model
+class Course(models.Model):
+    name = models.CharField(null=False, max_length=30, default='online course')
+    image = models.ImageField(upload_to='course_images/')
+    description = models.CharField(max_length=1000)
+    pub_date = models.DateField(null=True)
+    instructors = models.ManyToManyField(Instructor)
+    users = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Enrollment')
+    total_enrollment = models.IntegerField(default=0)
+    is_enrolled = False
+
+    def __str__(self):
+        return "Name: " + self.name + "," + \
+               "Description: " + self.description
+
+
+# Lesson model
+class Lesson(models.Model):
+    title = models.CharField(max_length=200, default="title")
+    order = models.IntegerField(default=0)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    content = models.TextField()
+
+
+# Enrollment model
+class Enrollment(models.Model):
+    AUDIT = 'audit'
+    HONOR = 'honor'
+    BETA = 'BETA'
+    COURSE_MODES = [
+        (AUDIT, 'Audit'),
+        (HONOR, 'Honor'),
+        (BETA, 'BETA')
+    ]
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    date_enrolled = models.DateField(default=now)
+    mode = models.CharField(max_length=5, choices=COURSE_MODES, default=AUDIT)
+    rating = models.FloatField(default=5.0)
+```
+
+## test.py ##
+
+```
+from django.test import TestCase
+
+# Create your tests here.
+```
+
+## views.py ##
+
+```
+from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render, redirect
+from .models import Course, Lesson, Enrollment
+from django.urls import reverse
+from django.views import generic, View
+from django.http import Http404
+
+# Create your class based views here.
+# Note that we are subclassing CourseListView from base View class
+# Note that CourseDetailsView is now subclassing DetailView 
+class CourseDetailsView(generic.DetailView):
+    model = Course
+    template_name = 'onlinecourse/course_detail.html'
+
+    # Handles get request
+    def get(self, request, *args, **kwargs):
+        context = {}
+        # We get URL parameter pk from keyword argument list as course_id
+        course_id = kwargs.get('pk')
+        try:
+            course = Course.objects.get(pk=course_id)
+            context['course'] = course
+            return render(request, 'onlinecourse/course_detail.html', context)
+        except Course.DoesNotExist:
+            raise Http404("No course matches the given id.")
+
+class EnrollView(View):
+
+    # Handles post request
+    def post(self, request, *args, **kwargs):
+        course_id = kwargs.get('pk')
+        course = get_object_or_404(Course, pk=course_id)
+        # Increase total enrollment by 1
+        course.total_enrollment += 1
+        course.save()
+        return HttpResponseRedirect(reverse(viewname='onlinecourse:course_details', args=(course.id,)))
+
+# Note that CourseListView is subclassing from generic.ListView instead of View
+# so that it can use attributes and override methods from ListView such as get_queryset()
+class CourseListView(generic.ListView):
+    template_name = 'onlinecourse/course_list.html'
+    context_object_name = 'course_list'
+
+    # Override get_queryset() to provide list of objects
+    def get_queryset(self):
+       courses = Course.objects.order_by('-total_enrollment')[:10]
+       return courses
+
+# Function based views
+
+# Function-based course list view
+# def popular_course_list(request):
+#    context = {}
+#    if request.method == 'GET':
+#        course_list = Course.objects.order_by('-total_enrollment')[:10]
+#        context['course_list'] = course_list
+#        return render(request, 'onlinecourse/course_list_no_css.html', context)
+
+# Function-based course_details view
+# def course_details(request, course_id):
+#    context = {}
+#    if request.method == 'GET':
+#        try:
+#            course = Course.objects.get(pk=course_id)
+#            context['course'] = course
+#            return render(request, 'onlinecourse/course_detail.html', context)
+#        except Course.DoesNotExist:
+#            raise Http404("No course matches the given id.")
+
+# Function-based enroll view
+# def enroll(request, course_id):
+#    if request.method == 'POST':
+#       course = get_object_or_404(Course, pk=course_id)
+#       # Create an enrollment
+#       course.total_enrollment += 1
+#       course.save()
+#       return HttpResponseRedirect(reverse(viewname='onlinecourse:course_details', args=(course.id,)))
+```
+
 ## # Lab - 1 ##
 
 ## # Lab - 2 ##
