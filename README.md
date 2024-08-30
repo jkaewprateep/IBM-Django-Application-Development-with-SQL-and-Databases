@@ -35,6 +35,29 @@ wheel==0.41.1
 multidict==4.5
 ```
 
+## WSGI.py ##
+
+🐑💬 ➰ Similar to application setting or program.cs, where the application initializes and loads the required settings and modules. In the past, if we needed to create multiple applications, such as clients and servers, from a web application server, we could call from the application program.cs, which is similar to this method where WSGI called the registered module and initialized the value. Class name modification here will affect the entire project. </br>
+
+```
+"""
+WSGI config for myproject project.
+
+It exposes the WSGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
+"""
+
+import os
+
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')
+
+application = get_wsgi_application()
+```
+
 ## # Lab - 1 ##
 
 ## # Lab - 2 ##
