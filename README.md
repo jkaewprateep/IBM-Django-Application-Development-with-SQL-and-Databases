@@ -826,6 +826,7 @@ def registration_request(request):
 ### urls.py ###
 
 🧸💬 Create routes of ```EnrollView view```, ```CourseListView view```, ```CourseDetailsView view```, ```logout path```, ```login path```, and ```registration path```. </br>
+🧸💬 Configuration of statics paths ```MEDIA_URL``` and ```STATIC_URL```. </br>
 
 ```
 from django.urls import path
