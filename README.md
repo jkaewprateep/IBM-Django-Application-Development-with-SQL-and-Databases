@@ -17,6 +17,9 @@ IBM - Django Application Development with SQL and Databases
 
 ## Requirements ##
 
+🧸💬 ```Django``` : Django library, ```Pillow``` : Python image library, ```jinja2``` : Document template library, ```gunicorn```: WSGI HTTP Server, ```contextvars``` : Task asynchronous context variables, ```typing-extensions``` : Python runtime typing extension,
+```aiohttp``` : Python HTTP request API, ```click``` : Python CLI interfaces, ```wheel``` : PEP Python Enhancement Proposals, and ```multidict``` : Python dictionary key-pairs library. </br>
+
 ```
 Django==3.1.3
 Pillow==10.0.0
