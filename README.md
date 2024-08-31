@@ -924,6 +924,7 @@ urlpatterns = [
 
 🧸💬 User login action element allowed in HTML with responsive action login in the ```onlinecourse``` application. </br>
 🧸💬 Enabled ```placeholder```, ```container``` and ```form action``` for communication and actions. </br>
+🦁💬 The ```{% load static %} ``` once it is ```script manager``` but the developer claims they had more effective with javascript and today they are using without repeating news about the ```script manager``` news, user functionality is lead of user demands and requirements when working and issues they are working in backgrounds. Broadcasting or making benefits from no confirmed news is wrong because of developer companies may under working on their cases. </br>
 
 ```
 <!DOCTYPE html>
