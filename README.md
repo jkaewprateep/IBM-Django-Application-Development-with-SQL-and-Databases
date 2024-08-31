@@ -953,6 +953,9 @@ urlpatterns = [
 
 ### user_registration.html ###
 
+🧸💬 Update registration page with ```registration``` function to perform user registration, supervisor access for Django platform required to elevate user right to superuser for the Django user admin page. </br>
+🧸💬 The registration page applied ```onlinecourse/course.css``` stylesheet as default webpages of this project. </br>
+
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -987,7 +990,10 @@ urlpatterns = [
 ## # Lab - 3 ##
 
 ### urls.py ###
-- update logout
+
+🧸💬 Update route ```logout``` method transfer to ```views.logout_request``` for perform ```logout_request``` function and collect of the response to user client request. </br>
+🧸💬 You can assign an application name ```onlinecourse``` for the default application name and import views from the project ```from . import views``` or required components. </br>
+🦁💬 There are inside boundary access and outside boundary access and they are protected by security level, directory and user-assigned permissions access to outside boundary may attention by the application designer because of information can be reused and they are performed sources protection access when access to inside boundary they required elevate user's permission for the multi-layers accessibility design and that is intentionally action should have permission to perform. In the cause of determining of user attention, the internal boundary included of database and system valuable information is protected information, system designer designed to have granted permissions access. </br>
 
 ```
 from django.urls import path
