@@ -955,6 +955,7 @@ urlpatterns = [
 
 🧸💬 Update registration page with ```registration``` function to perform user registration, supervisor access for Django platform required to elevate user right to superuser for the Django user admin page. </br>
 🧸💬 The registration page applied ```onlinecourse/course.css``` stylesheet as default webpages of this project. </br>
+🦁💬 Even a stylesheet is the property of the application owner to reuse of stylesheet and they may have some information, settings, or actions that are outscope of the developing application creating more risks and it is from intentionally wrong actions. </br>
 
 ```
 <!DOCTYPE html>
