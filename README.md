@@ -1021,6 +1021,7 @@ urlpatterns = [
 
 🧸💬 Logout function accessibility by ```Logout buttom``` this element allowed user interaction to perform log-out requests by the ```onlinecourse:logout``` page from the webpage in the same project. </br>
 🧸💬 There is utilized of ```User property``` for perform conditional logic ```user.is_authenticated``` for the HTML element ```Logout buttom``` visibility. </br>
+🦁💬 Even source or accessible resources that users can read on their machine, modifying of the file or source address to create different routes of the logic assigned or displayed by intention is a false action because. They are intentional actions but they should be protected by the sources, software applications, and application owner of the file and communication system. IF users prove that it is not by their intention or they are normal behaviour or the system that action will be under the application owner, working with the support team of the application is one intentional action by performing evidence and steps followed by their request for investigation on your own computer. When you have found a bug and reported it to their application support that is the correct and should to do action but broadcasting without permissions that is creates of multiply technical damages to applications and brands. There also are IT security communities you can report for bugs and your hypothesis too. </br>
 
 ```
 <nav class="navbar navbar-light bg-light">
