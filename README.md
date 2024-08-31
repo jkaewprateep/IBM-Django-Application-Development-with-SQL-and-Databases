@@ -1019,6 +1019,9 @@ urlpatterns = [
 
 ### Navigation bar - navbar navbar-light ###
 
+🧸💬 Logout function accessibility by ```Logout buttom``` this element allowed user interaction to perform log-out requests by the ```onlinecourse:logout``` page from the webpage in the same project. </br>
+🧸💬 There is utilized of ```User property``` for perform conditional logic ```user.is_authenticated``` for the HTML element ```Logout buttom``` visibility. </br>
+
 ```
 <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
