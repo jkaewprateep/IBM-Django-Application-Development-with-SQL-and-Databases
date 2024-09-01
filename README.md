@@ -1121,7 +1121,34 @@ urlpatterns = [
      	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web60.png"> 
      	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web61.png">
 	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web62.png">
-	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web63.png"> </br> 
+	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web63.png">  
+ 	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web64.png"> 
+     	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web65.png">
+	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web66.png">
+	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web67.png">
+	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web68.png">
+	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web69.png"> 
+    	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web70.png"> 
+     	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web71.png"> 
+     	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web72.png"> 
+     	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web73.png"> 
+     	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web74.png"> 
+      	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web75.png">
+	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web76.png"> 
+    	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web77.png"> 
+     	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web78.png"> 
+     	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web79.png"> 
+     	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web80.png"> 
+     	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web81.png"> 
+     	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web82.png"> 
+      	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web83.png"> 
+      	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web84.png"> 
+      	<img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web85.png"> 
+        <img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web86.png"> 
+        <img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web87.png"> 
+        <img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web88.png"> 
+        <img width="10%" src="https://github.com/jkaewprateep/IBM-Django-Application-Development-with-SQL-and-Databases/blob/main/web89.png"> </br>
+ 
  <b> Pictures from the Internet </b> </br>
 </p>
 
